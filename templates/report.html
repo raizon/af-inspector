@@ -1,0 +1,24 @@
+{% extends 'base.html' %}{% block title %}PT Application Firewall Log Inspector{% endblock %}{% block body %}<details class="service">
+<summary>waf_gowaf - 1</summary>
+<div class="box">
+<div class="severity">Критические ошибки: 1</div>
+<div class="messages_high">
+<p>x1 Ошибка чтения данных из oplog. - [0 мин. 0 сек назад]</p>
+</div>
+</div>
+</details>
+<details class="service">
+<summary>trainer - 25</summary>
+<div class="box">
+<div class="severity">Критические ошибки: 3</div>
+<div class="messages_high">
+<p>x3 Ошибка коммуникации с сервером Mongo. - [4 ч. 36 мин. назад]</p>
+</div>
+<div class="severity">Незначительные ошибки: 22</div>
+<div class="messages_low">
+<p>x21 field not found - excpected type 17 - [4 ч. 39 мин. назад]</p>
+<p>x1 License key is not available (7, 7). KeyID: "" IP: 127.0.0.1 - [4 ч. 37 мин. назад]</p>
+</div>
+</div>
+</details>
+{% endblock %}
