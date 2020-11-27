@@ -41,11 +41,11 @@ services = {
              'syslog': 'syslog',
              'diamond': 'diamond.log',
              'celerybeat': 'celerybeat.log',
-             'nginx': 'nginx/error.log',
+             # 'nginx': 'nginx/error.log',
              'waf-sync': 'waf-sync.log',
              'ui': 'ui.log',
              'waf-api': 'waf_api.log',
-             'waf-nginx': 'waf/error.log'
+             'waf-nginx': 'error.log'
             }
 
 parse_configs = ['monit', 'waf-nginx', 'wafd', 'waf-correlator',
@@ -96,11 +96,11 @@ def inspector(candidates):
     errors = {}
     for service in candidates.keys():
         filename = candidates.get(service)
-        output = reader(service=service, filename=filename)
-        if output != 0:
-            b = sorter(service, output)
+        data = reader(service=service, filename=filename)
+        if data != 0:
+            b = sorter(service, data)
             errors.update({service: b})
-            errors.get(service).update({'total_errors': output.get('total_errors')})
+            errors.get(service).update({'total_errors': data.get('total_errors')})
     return errors
 
 
@@ -115,6 +115,8 @@ def reader(filename, service, delta=24):
     counter = {}
     errors = []
     flag = None
+
+    # Читаем файл с конфа
     with FileReadBackwards('{}'.format(filename), encoding="utf-8") as frb:
         for line in frb:
 
@@ -184,7 +186,7 @@ def reader(filename, service, delta=24):
 # def sorter(errors, last_error, last_line_time, service):
 def sorter(service, data):
     output = {}
-    output.update({'log': data.get('log')})
+    # output.update({'log': data.get('log')})
     paper = []
     high = []
     mid = []

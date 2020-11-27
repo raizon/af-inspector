@@ -6,7 +6,7 @@ RUN apt update && \
     dpkg-reconfigure --frontend=noninteractive locales && \
     apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev curl libbz2-dev python3 python3-venv python3-pip
 
-RUN apt install -y wget
+RUN apt install -y wget unzip
 
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8

@@ -55,6 +55,13 @@ def wx_gui():
     app.MainLoop()
 
 
+def service_by_path(obj):
+    filename = os.path.basename(obj)
+    for serv in services.keys():
+        if filename in services.get(serv):
+            engine.incoming(obj, serv)
+
+
 class HelloFrame(wx.Frame):
     """
     A Frame that says Hello World
@@ -130,9 +137,17 @@ class HelloFrame(wx.Frame):
 
     def on_press(self, event):
         obj = self.text_ctrl.GetValue()
+
+        # Если ничего не выбрано
         if not obj:
             print("You didn't enter anything!")
         else:
+
+            # Если путь оканчивается на log
+            if str(obj).endswith('.log'):
+                service_by_path(obj)
+
+            # если выбарано что-то другое
             with open('{}/data/last_dir'.format(path), 'w', encoding='utf-8') as f:
                 f.write(self.text_ctrl.GetValue())
             jam = {}

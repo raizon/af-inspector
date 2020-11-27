@@ -123,6 +123,10 @@ def find_files(folder, pattern):
 
 
 def process_content(folder, obj):
+    if str(obj).endswith('log'):
+        filename = os.path.basename(obj)
+        cmd = 'cp -r "{}" "{}/{}"'.format(obj, folder, filename)
+        os.system(cmd)
     if str(obj).endswith('tar.gz') or str(obj).endswith('tar'):
         tar('extract', obj, folder)
     elif str(obj).endswith('zip'):

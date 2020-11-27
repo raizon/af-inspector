@@ -225,10 +225,10 @@ def errors_parser(content, wrk_dir, mode, filelist):
 
         for service in content.keys():
             # Опрелеляем ссыылку на файл журнала
-            extension = engine.services.get(service)
-            for obj in filelist:
-                if str(obj).endswith(extension):
-                    filelink = obj
+            # extension = engine.services.get(service)
+            # for obj in filelist:
+            #     if str(obj).endswith(extension):
+            #         filelink = obj
 
             # Получаем список текущих ошибок для сервиса
             error_container = content.get(service)
@@ -271,12 +271,12 @@ def errors_parser(content, wrk_dir, mode, filelist):
             # for n in error_container.get('log'):
             #     f.write('<p>{}</p>'.format(n))
             # f.write('</details>\n')
-            if mode == 'gui':
-                f.write('<p><a class="filelink" href="{}"> Открыть файл журнала</a></p>'.format(filelink))
+            # if mode == 'gui':
+            #     f.write('<p><a class="filelink" href="{}"> Открыть файл журнала</a></p>'.format(filelink))
             f.write('</div>\n')
             f.write('</details>\n')
-        if mode == 'gui':
-            f.write('<p><a class="dirlink" href="file:///{}"> Открыть директорию с журналами</a></p>'.format(tools.splitter(filelink, extension, output='value', position=0)))
+        # if mode == 'gui':
+        #     f.write('<p><a class="dirlink" href="file:///{}"> Открыть директорию с журналами</a></p>'.format(tools.splitter(filelink, extension, output='value', position=0)))
 
 
 def file_list(files):
